@@ -1,5 +1,6 @@
 package com.nunomagg.network
 
+import com.nunomagg.services.GameManagementService
 import com.nunomagg.services.GameManagementServiceImpl
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
@@ -7,7 +8,7 @@ import org.springframework.web.bind.annotation.*
 @RestController
 class GameController {
     @Autowired
-    lateinit var gameManagementService: GameManagementServiceImpl
+    lateinit var gameManagementService: GameManagementService
 
     @GetMapping("user/{userId}/book/{bookId}/request")
     fun requestBookLine(@PathVariable(value = "userId", required = true) userId: Long,

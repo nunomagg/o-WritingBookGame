@@ -7,7 +7,7 @@ class BookCollaborationServiceImplSpec extends Specification {
 
     def 'should create a new book and get it'(){
         given:
-        BookCollaborationServiceImpl factory = new BookCollaborationServiceImpl()
+        BookCollaborationService factory = new BookCollaborationServiceImpl()
 
         when:
         factory.createBook()
@@ -18,7 +18,7 @@ class BookCollaborationServiceImplSpec extends Specification {
 
     def "should be able to create a book and write in it"(){
         given:
-        BookCollaborationServiceImpl factory = new BookCollaborationServiceImpl()
+        BookCollaborationService factory = new BookCollaborationServiceImpl()
         def line = "If I had a world of my own"
         def bookId = factory.createBook()
 
@@ -31,7 +31,7 @@ class BookCollaborationServiceImplSpec extends Specification {
 
     def "should create a new book add a line see that the book contains it"(){
         given:
-        BookCollaborationServiceImpl factory = new BookCollaborationServiceImpl()
+        BookCollaborationService factory = new BookCollaborationServiceImpl()
         def line = "If I had a world of my own"
         def bookId = factory.createBook()
         factory.writeInBook(bookId, line)
@@ -45,7 +45,7 @@ class BookCollaborationServiceImplSpec extends Specification {
 
     def "should create 3 new books and check their existence and that they're open to collaboration"(){
         given:
-        BookCollaborationServiceImpl factory = new BookCollaborationServiceImpl()
+        BookCollaborationService factory = new BookCollaborationServiceImpl()
 
         def book = factory.createBook()
         def book2 = factory.createBook()
@@ -60,7 +60,7 @@ class BookCollaborationServiceImplSpec extends Specification {
 
     def "should create two books and check only one is open"(){
         given:
-        BookCollaborationServiceImpl factory = new BookCollaborationServiceImpl()
+        BookCollaborationService factory = new BookCollaborationServiceImpl()
         def book = factory.createBook()
         def line1 = "If I had a world of my own"
         factory.writeInBook(book, line1)
@@ -80,7 +80,7 @@ class BookCollaborationServiceImplSpec extends Specification {
 
     def "should test that after writing multiple lines the book contains them all"(){
         given:
-        BookCollaborationServiceImpl factory = new BookCollaborationServiceImpl()
+        BookCollaborationService factory = new BookCollaborationServiceImpl()
         def bookId = factory.createBook()
         def line1 = "If I had a world of my own"
         def line2 = "Line 2"

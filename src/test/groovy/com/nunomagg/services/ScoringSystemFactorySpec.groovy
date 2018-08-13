@@ -6,7 +6,7 @@ import spock.lang.Specification
 class ScoringSystemFactorySpec extends Specification {
 
     def "should show leader board with users"(){
-        ScoringSystemServiceImpl pointSystemFactory = new ScoringSystemServiceImpl()
+        ScoringSystemService pointSystemFactory = new ScoringSystemServiceImpl()
 
         when:
         def board = pointSystemFactory.getLeaderBoard()
@@ -19,7 +19,7 @@ class ScoringSystemFactorySpec extends Specification {
     }
 
     def "should return leader board sorted by the points descendant"(){
-        ScoringSystemServiceImpl pointSystemFactory = new ScoringSystemServiceImpl()
+        ScoringSystemService pointSystemFactory = new ScoringSystemServiceImpl()
         def user = 1
         def user2 = 2
 

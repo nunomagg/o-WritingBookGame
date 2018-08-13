@@ -25,7 +25,7 @@ class GameManagementServiceImplSpec extends Specification {
         ]
     }
 
-    private static GameManagementServiceImpl getNewGameManagementService() {
+    private static GameManagementService getNewGameManagementService() {
         new GameManagementServiceImpl(new UserManagementServiceImpl(), new BookCollaborationServiceImpl(), new ScoringSystemServiceImpl(), new TurnSystemServiceImpl())
     }
 

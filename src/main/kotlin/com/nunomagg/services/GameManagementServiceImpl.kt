@@ -13,28 +13,28 @@ import org.springframework.stereotype.Service
 @Service
 class GameManagementServiceImpl() : GameManagementService {
     @Autowired
-    private lateinit var userManagementServiceImpl: UserManagementServiceImpl
+    private lateinit var userManagementService: UserManagementService
     @Autowired
-    private lateinit var bookCollaborationServiceImpl: BookCollaborationServiceImpl
+    private lateinit var bookCollaborationServiceImpl: BookCollaborationService
     @Autowired
-    private lateinit var scoringSystemServiceImpl: ScoringSystemServiceImpl
+    private lateinit var scoringSystemService: ScoringSystemService
     @Autowired
-    private lateinit var turnSystemServiceImpl: TurnSystemServiceImpl
+    private lateinit var turnSystemService: TurnSystemService
 
-    constructor(userManagementServiceImpl: UserManagementServiceImpl, bookCollaborationServiceImpl: BookCollaborationServiceImpl, scoringSystemServiceImpl: ScoringSystemServiceImpl, turnSystemServiceImpl: TurnSystemServiceImpl) : this() {
-        this.bookCollaborationServiceImpl = bookCollaborationServiceImpl
-        this.userManagementServiceImpl = userManagementServiceImpl
-        this.scoringSystemServiceImpl = scoringSystemServiceImpl
-        this.turnSystemServiceImpl = turnSystemServiceImpl
+    constructor(userManagementService: UserManagementService, bookCollaborationService: BookCollaborationServiceImpl, scoringSystemService: ScoringSystemService, turnSystemService: TurnSystemService) : this() {
+        this.bookCollaborationServiceImpl = bookCollaborationService
+        this.userManagementService = userManagementService
+        this.scoringSystemService = scoringSystemService
+        this.turnSystemService = turnSystemService
     }
 
-    override fun createUser(name: String) = userManagementServiceImpl.createUser(name)
+    override fun createUser(name: String) = userManagementService.createUser(name)
 
-    override fun getUser(userId: Long): User? = userManagementServiceImpl.getUser(userId)
+    override fun getUser(userId: Long): User? = userManagementService.getUser(userId)
 
-    override fun getUsers(): MutableCollection<User> = userManagementServiceImpl.getUsers()
+    override fun getUsers(): MutableCollection<User> = userManagementService.getUsers()
 
-    override fun getUserScore(userId: Long): Int? = scoringSystemServiceImpl.getUserScore(userId)
+    override fun getUserScore(userId: Long): Int? = scoringSystemService.getUserScore(userId)
 
     override fun createBook(): Long = bookCollaborationServiceImpl.createBook()
 
@@ -42,7 +42,7 @@ class GameManagementServiceImpl() : GameManagementService {
         validateUsersExistence(userId)
         validateUserHasntWroteInBook(userId, bookId)
 
-        turnSystemServiceImpl.startTurn(userId, bookId)
+        turnSystemService.startTurn(userId, bookId)
         return bookCollaborationServiceImpl.participateInBook(userId, bookId)
     }
 
@@ -63,11 +63,11 @@ class GameManagementServiceImpl() : GameManagementService {
         validateUserParticipationInBook(userId, bookId)
         validateUserHasntWroteInBook(userId, bookId)
 
-        turnSystemServiceImpl.validateUserTurn(userId, bookId)
+        turnSystemService.validateUserTurn(userId, bookId)
 
         val writeInBook = bookCollaborationServiceImpl.writeInBook(bookId, line)
         if (writeInBook) {
-            turnSystemServiceImpl.endTurn(userId, bookId)
+            turnSystemService.endTurn(userId, bookId)
         }
 
         return writeInBook
@@ -91,7 +91,7 @@ class GameManagementServiceImpl() : GameManagementService {
     override fun completeBook(bookId: Long): Boolean {
         val bookWasCompleted = bookCollaborationServiceImpl.completeBook(bookId)
         if (bookWasCompleted) {
-            scoringSystemServiceImpl.addBookPointToUsers(bookCollaborationServiceImpl.getBookParticipantsIds(bookId))
+            scoringSystemService.addBookPointToUsers(bookCollaborationServiceImpl.getBookParticipantsIds(bookId))
         }
         return bookWasCompleted
     }
@@ -99,8 +99,8 @@ class GameManagementServiceImpl() : GameManagementService {
     override fun getOpenBooks(): Set<Long> = bookCollaborationServiceImpl.getBooksOpenToCollaboration()
 
     override fun getLeaderBoard(): List<UserScore> {
-        return scoringSystemServiceImpl.getLeaderBoard().mapNotNull { it ->
-            val user = userManagementServiceImpl.getUser(it.userId)
+        return scoringSystemService.getLeaderBoard().mapNotNull { it ->
+            val user = userManagementService.getUser(it.userId)
             if (user != null) {
                 it.username = user.name
                 it
@@ -109,7 +109,7 @@ class GameManagementServiceImpl() : GameManagementService {
     }
 
     private fun validateUsersExistence(userId: Long) {
-        userManagementServiceImpl.getUser(userId) ?: throw UserNotFoundException(userId)
+        userManagementService.getUser(userId) ?: throw UserNotFoundException(userId)
     }
 
 }

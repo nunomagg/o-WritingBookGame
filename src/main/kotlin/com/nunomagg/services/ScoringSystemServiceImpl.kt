@@ -30,7 +30,7 @@ class ScoringSystemServiceImpl() : ScoringSystemService{
 
     override fun getLeaderBoard(): List<UserScore> = getFullLeaderBoard().take(maxUsersOnLeaderBoard)
 
-    fun getUserScore(userId: Long) = pointsByUserId[userId] ?: 0
+    override fun getUserScore(userId: Long) = pointsByUserId[userId] ?: 0
 
     override fun addNewBookPointsToUser(userId: Long) {
         pointsByUserId[userId]?.let {

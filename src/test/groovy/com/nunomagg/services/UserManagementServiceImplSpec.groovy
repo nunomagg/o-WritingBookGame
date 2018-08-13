@@ -6,7 +6,7 @@ class UserManagementServiceImplSpec extends Specification {
 
 
     def "should create a user and check its existence"(){
-        UserManagementServiceImpl userFactory = new UserManagementServiceImpl()
+        def userFactory = new UserManagementServiceImpl()
 
         when:
         def user = userFactory.createUser("User A")
@@ -16,7 +16,7 @@ class UserManagementServiceImplSpec extends Specification {
     }
 
     def "should return null if user doesn't exist"(){
-        UserManagementServiceImpl userFactory = new UserManagementServiceImpl()
+        def userFactory = new UserManagementServiceImpl()
 
         when:
         userFactory.createUser("User A")
