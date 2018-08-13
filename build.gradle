@@ -24,7 +24,7 @@ apply plugin: 'application'
 
 group = "com.magg"
 version = "1.0-SNAPSHOT"
-mainClassName = "org.magg.main.kotlin.WritingBookApplication"
+mainClassName = "com.nunomagg.WritingBookApplicationKt"
 
 repositories {
     jcenter()
