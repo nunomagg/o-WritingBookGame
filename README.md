@@ -27,11 +27,11 @@ You can assume that the players will always write a sentence once they get a boo
 
 ## Solution
 
-##Assumption 1
+## Assumption 1
 For this solution an assumption was made that the phrase **"You can assume that the players will always write a sentence once they get a book."**
 in the projects statement meant the user was added automatically as a contribuiting player of the book upon requesting it and that it would be he's
 turn until he writes.
 So as for the mentioned assumption the book should never be locked on completion
 
-##Other assumptions
+## Other assumptions
 - the user can add as many lines as he want to a book.
