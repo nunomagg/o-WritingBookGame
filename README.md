@@ -34,4 +34,4 @@ turn until he writes.
 So as for the mentioned assumption the book should never be locked on completion
 
 ## Other assumptions
-- the user can add as many lines as he want to a book.
+- a book doesn't restraint the maximum amount of lines added per user. 
