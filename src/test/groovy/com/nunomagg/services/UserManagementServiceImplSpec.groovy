@@ -1,13 +1,12 @@
-package factories
+package com.nunomagg.services
 
-import com.nunomagg.services.UserManagementService
 import spock.lang.Specification
 
-class UserManagementServiceSpec extends Specification {
+class UserManagementServiceImplSpec extends Specification {
 
 
     def "should create a user and check its existence"(){
-        UserManagementService userFactory = new UserManagementService()
+        UserManagementServiceImpl userFactory = new UserManagementServiceImpl()
 
         when:
         def user = userFactory.createUser("User A")
@@ -17,7 +16,7 @@ class UserManagementServiceSpec extends Specification {
     }
 
     def "should return null if user doesn't exist"(){
-        UserManagementService userFactory = new UserManagementService()
+        UserManagementServiceImpl userFactory = new UserManagementServiceImpl()
 
         when:
         userFactory.createUser("User A")

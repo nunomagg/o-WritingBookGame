@@ -1,12 +1,12 @@
-package factories
+package com.nunomagg.services
 
-import com.nunomagg.services.ScoringSystemService
+import com.nunomagg.services.ScoringSystemServiceImpl
 import spock.lang.Specification
 
 class ScoringSystemFactorySpec extends Specification {
 
     def "should show leader board with users"(){
-        ScoringSystemService pointSystemFactory = new ScoringSystemService()
+        ScoringSystemServiceImpl pointSystemFactory = new ScoringSystemServiceImpl()
 
         when:
         def board = pointSystemFactory.getLeaderBoard()
@@ -19,13 +19,13 @@ class ScoringSystemFactorySpec extends Specification {
     }
 
     def "should return leader board sorted by the points descendant"(){
-        ScoringSystemService pointSystemFactory = new ScoringSystemService()
+        ScoringSystemServiceImpl pointSystemFactory = new ScoringSystemServiceImpl()
         def user = 1
         def user2 = 2
 
-        pointSystemFactory.addNewBookPoints(user)
-        pointSystemFactory.addNewBookPoints(user)
-        pointSystemFactory.addNewBookPoints(user2)
+        pointSystemFactory.addNewBookPointsToUser(user)
+        pointSystemFactory.addNewBookPointsToUser(user)
+        pointSystemFactory.addNewBookPointsToUser(user2)
 
         when:
         def board = pointSystemFactory.getLeaderBoard()

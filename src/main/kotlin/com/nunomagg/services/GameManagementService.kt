@@ -3,7 +3,7 @@ package com.nunomagg.services
 import com.nunomagg.data.User
 import com.nunomagg.data.UserScore
 
-interface IGameManagementService {
+interface GameManagementService {
 
     fun createUser(name: String) : Long
     fun getUser(userId: Long): User?

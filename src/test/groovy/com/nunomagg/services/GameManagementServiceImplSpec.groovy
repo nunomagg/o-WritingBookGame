@@ -1,7 +1,6 @@
-package services
+package com.nunomagg.services
 
 import com.nunomagg.exceptions.*
-import com.nunomagg.services.*
 import spock.lang.Specification
 
 class GameManagementServiceImplSpec extends Specification {
@@ -27,7 +26,7 @@ class GameManagementServiceImplSpec extends Specification {
     }
 
     private static GameManagementServiceImpl getNewGameManagementService() {
-        new GameManagementServiceImpl(new UserManagementService(), new BookCollaborationService(), new ScoringSystemService(), new TurnSystemService())
+        new GameManagementServiceImpl(new UserManagementServiceImpl(), new BookCollaborationServiceImpl(), new ScoringSystemServiceImpl(), new TurnSystemServiceImpl())
     }
 
     def "should test that create user works"(){

@@ -3,11 +3,11 @@ package com.nunomagg.services
 import com.nunomagg.exceptions.PlayingOutOfTurnException
 import spock.lang.Specification
 
-class TurnSystemServiceSpec extends Specification {
+class TurnSystemServiceImplSpec extends Specification {
 
     def "should allow to start turn"() {
         given:
-        def turnSystemService = new TurnSystemService(true)
+        def turnSystemService = new TurnSystemServiceImpl(true)
 
         when:
         turnSystemService.startTurn(1, 1)
@@ -18,7 +18,7 @@ class TurnSystemServiceSpec extends Specification {
 
     def "should allow to start turn when its another users turn"() {
         given:
-        def turnSystemService = new TurnSystemService(true)
+        def turnSystemService = new TurnSystemServiceImpl(true)
         turnSystemService.startTurn(1, 1)
 
         when:
@@ -30,7 +30,7 @@ class TurnSystemServiceSpec extends Specification {
 
     def "should allow a user to end  another users turn"() {
         given:
-        def turnSystemService = new TurnSystemService(true)
+        def turnSystemService = new TurnSystemServiceImpl(true)
         turnSystemService.startTurn(1, 1)
 
         when:
@@ -42,7 +42,7 @@ class TurnSystemServiceSpec extends Specification {
 
     def "should allow to alternate turns"() {
         given:
-        def turnSystemService = new TurnSystemService(true)
+        def turnSystemService = new TurnSystemServiceImpl(true)
         turnSystemService.startTurn(1, 1)
         turnSystemService.endTurn(1, 1)
         turnSystemService.startTurn(2, 1)
