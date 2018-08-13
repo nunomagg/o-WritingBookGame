@@ -31,7 +31,7 @@ class GameManagementServiceImplSpec extends Specification {
 
     def "should test that create user works"(){
         given:
-        GameManagementServiceImpl gameManagementService = getNewGameManagementService()
+        def gameManagementService  = getNewGameManagementService()
 
         when:
         gameManagementService.createUser(userNames.first())
@@ -42,7 +42,7 @@ class GameManagementServiceImplSpec extends Specification {
 
     def "should test that its possible to get a user after it's creation"(){
         given:
-        GameManagementServiceImpl gameManagementService = getNewGameManagementService()
+        def gameManagementService  = getNewGameManagementService()
         def userId = gameManagementService.createUser(userNames.first())
 
         when:
@@ -57,7 +57,7 @@ class GameManagementServiceImplSpec extends Specification {
 
     def "should test that when no points were added to a user the user's points are 0"(){
         given:
-        GameManagementServiceImpl gameManagementService = getNewGameManagementService()
+        def gameManagementService  = getNewGameManagementService()
         def userId = gameManagementService.createUser(userNames.first())
 
         when:
@@ -69,7 +69,7 @@ class GameManagementServiceImplSpec extends Specification {
 
     def "should test that that no error is return on userPoints function even if the user doenst exist"(){
         given:
-        GameManagementServiceImpl gameManagementService = getNewGameManagementService()
+        def gameManagementService  = getNewGameManagementService()
 
         when:
         def score = gameManagementService.getUserScore(20)
@@ -83,7 +83,7 @@ class GameManagementServiceImplSpec extends Specification {
 
     def "should throw an exception if user tries to read a book if he didnt participate in it"(){
         given:
-        GameManagementServiceImpl gameManagementService = getNewGameManagementService()
+        def gameManagementService  = getNewGameManagementService()
         def userId = gameManagementService.createUser(userNames.first())
         def bookId = gameManagementService.createBook()
 
@@ -96,7 +96,7 @@ class GameManagementServiceImplSpec extends Specification {
 
     def "should validate that a non existent user cannot request a line from a book"(){
         given:
-        GameManagementServiceImpl gameManagementService = getNewGameManagementService()
+        def gameManagementService  = getNewGameManagementService()
 
         when:
         gameManagementService.requestBookLine(1, 1)
@@ -106,7 +106,7 @@ class GameManagementServiceImplSpec extends Specification {
     }
     def "should validate that a existent user cannot request a line from non existant book"(){
         given:
-        GameManagementServiceImpl gameManagementService = getNewGameManagementService()
+        def gameManagementService  = getNewGameManagementService()
         def userId = gameManagementService.createUser(userNames.first())
 
         when:
@@ -119,7 +119,7 @@ class GameManagementServiceImplSpec extends Specification {
 
     def "should throw an exception if user tries to read a book without it being completed"(){
         given:
-        GameManagementServiceImpl gameManagementService = getNewGameManagementService()
+        def gameManagementService  = getNewGameManagementService()
         def userId = gameManagementService.createUser(userNames.first())
         def bookId = gameManagementService.createBook()
         gameManagementService.requestBookLine(userId,bookId)
@@ -133,7 +133,7 @@ class GameManagementServiceImplSpec extends Specification {
 
     def "should test that its possible to create various users and get them all"(){
         given:
-        GameManagementServiceImpl gameManagementService = getNewGameManagementService()
+        def gameManagementService  = getNewGameManagementService()
         def userId = gameManagementService.createUser(userNames.first())
         def userId2 = gameManagementService.createUser(userNames[1])
         def userId3 = gameManagementService.createUser(userNames[2])
@@ -155,7 +155,7 @@ class GameManagementServiceImplSpec extends Specification {
 
     def "should test that create collaboration book works without issues"(){
         given:
-        GameManagementServiceImpl gameManagementService = getNewGameManagementService()
+        def gameManagementService  = getNewGameManagementService()
 
         when:
         gameManagementService.createBook()
@@ -166,7 +166,7 @@ class GameManagementServiceImplSpec extends Specification {
 
     def "should test that a once a book is completed is no longer open for collaboration"(){
         given:
-        GameManagementServiceImpl gameManagementService = getNewGameManagementService()
+        def gameManagementService  = getNewGameManagementService()
         def bookId = gameManagementService.createBook()
 
         when:
@@ -177,7 +177,7 @@ class GameManagementServiceImplSpec extends Specification {
     }
 
     def "should test that existent user can write in a existent book"(){
-        GameManagementServiceImpl gameManagementService = getNewGameManagementService()
+        def gameManagementService  = getNewGameManagementService()
 
         def userId = gameManagementService.createUser(userNames.first())
         def bookId = gameManagementService.createBook()
@@ -192,7 +192,7 @@ class GameManagementServiceImplSpec extends Specification {
     }
 
     def "should test that existent user cant write in a existent book if not requested first"() {
-        GameManagementServiceImpl gameManagementService = getNewGameManagementService()
+        def gameManagementService  = getNewGameManagementService()
 
         def userId = gameManagementService.createUser(userNames.first())
         def bookId = gameManagementService.createBook()
@@ -206,7 +206,7 @@ class GameManagementServiceImplSpec extends Specification {
 
     def "should test that the a user cannot write to book if the book is completed"(){
         given:
-        GameManagementServiceImpl gameManagementService = getNewGameManagementService()
+        def gameManagementService  = getNewGameManagementService()
         def bookId = gameManagementService.createBook()
         def userId = gameManagementService.createUser(userNames.first())
         gameManagementService.completeBook(bookId)
@@ -220,7 +220,7 @@ class GameManagementServiceImplSpec extends Specification {
 
     def "should test that users that collaborated on a book can read the book"(){
         given:
-        GameManagementServiceImpl gameManagementService = getNewGameManagementService()
+        def gameManagementService  = getNewGameManagementService()
         def userIds = new ArrayList<Long>()
 
         userNames.each {
@@ -246,7 +246,7 @@ class GameManagementServiceImplSpec extends Specification {
 
     def "should run project's full happy path"(){
         given:
-        GameManagementServiceImpl gameManagementService = getNewGameManagementService()
+        def gameManagementService  = getNewGameManagementService()
         def usersIds = new ArrayList<Long>()
         def leaderBoardUsers = new ArrayList<Long>()
 
@@ -280,7 +280,7 @@ class GameManagementServiceImplSpec extends Specification {
 
     def "should create a book add some participants, complete it and not allow more participants to be added"(){
         given:
-        GameManagementServiceImpl gameManagementService = getNewGameManagementService()
+        def gameManagementService  = getNewGameManagementService()
         def usersIds = [
                 gameManagementService.createUser(userNames[0]),
                 gameManagementService.createUser(userNames[1]),
@@ -305,7 +305,7 @@ class GameManagementServiceImplSpec extends Specification {
 
     def "should get an out of turn exception if user tries to request a book out of turn"() {
         given:
-        GameManagementServiceImpl gameManagementService = getNewGameManagementService()
+        def gameManagementService  = getNewGameManagementService()
         def usersIds = [
                 gameManagementService.createUser(userNames[0]),
                 gameManagementService.createUser(userNames[1]),

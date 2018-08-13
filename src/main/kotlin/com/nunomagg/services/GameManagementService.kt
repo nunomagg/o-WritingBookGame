@@ -4,7 +4,6 @@ import com.nunomagg.data.User
 import com.nunomagg.data.UserScore
 
 interface GameManagementService {
-
     fun createUser(name: String) : Long
     fun getUser(userId: Long): User?
     fun getUsers() : MutableCollection<User>
