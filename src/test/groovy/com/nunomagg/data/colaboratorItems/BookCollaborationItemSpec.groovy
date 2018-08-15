@@ -1,15 +1,18 @@
 package com.nunomagg.data.colaboratorItems
 
 import com.nunomagg.data.User
+import spock.lang.Shared
 import spock.lang.Specification
 
 class BookCollaborationItemSpec extends Specification {
-    def userSeqId = 0
-    def bookSeqId = 0
-    List<Long> users
-    List<String> lines
+    @Shared def userSeqId = 0
+    @Shared def bookSeqId = 0
+    @Shared List<Long> users
+    @Shared List<String> lines
 
-    def setup() {
+    BookCollaborationItem book
+
+    def setupSpec() {
         users = [
                 new User(userSeqId++, 'User A').getId(),
                 new User(userSeqId++, 'User B').getId(),
@@ -27,10 +30,11 @@ class BookCollaborationItemSpec extends Specification {
         ]
     }
 
-    def "should not write in book if text is empty"(){
-        given:
-        BookCollaborationItem book = new BookCollaborationItem(bookSeqId)
+    def setup(){
+        book = new BookCollaborationItem(bookSeqId)
+    }
 
+    def "should not write in book if text is empty"(){
         when:
         def writeInBookSuccessful = book.writeInBook("   ")
 
@@ -40,7 +44,6 @@ class BookCollaborationItemSpec extends Specification {
 
     def "should not be able to add participant if book is close to collaboration "(){
         given:
-        BookCollaborationItem book = new BookCollaborationItem(bookSeqId)
         book.endCollaboration()
 
         when:
@@ -52,9 +55,9 @@ class BookCollaborationItemSpec extends Specification {
 
     def "should test that a book when created is open to collaboration"(){
         when:
-        BookCollaborationItem book = new BookCollaborationItem(bookSeqId)
+        BookCollaborationItem newBook = new BookCollaborationItem(bookSeqId)
 
         then:
-        book.isOpenToCollaboration()
+        newBook.isOpenToCollaboration()
     }
 }
