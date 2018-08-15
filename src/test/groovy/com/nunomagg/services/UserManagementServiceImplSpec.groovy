@@ -1,13 +1,17 @@
 package com.nunomagg.services
 
+import spock.lang.Shared
 import spock.lang.Specification
 
 class UserManagementServiceImplSpec extends Specification {
 
+    @Shared
+    def userFactory
+    def setup(){
+        userFactory = new UserManagementServiceImpl()
+    }
 
     def "should create a user and check its existence"(){
-        def userFactory = new UserManagementServiceImpl()
-
         when:
         def user = userFactory.createUser("User A")
 
@@ -16,8 +20,6 @@ class UserManagementServiceImplSpec extends Specification {
     }
 
     def "should return null if user doesn't exist"(){
-        def userFactory = new UserManagementServiceImpl()
-
         when:
         userFactory.createUser("User A")
 

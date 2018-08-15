@@ -1,14 +1,19 @@
 package com.nunomagg.services
 
 import com.nunomagg.services.BookCollaborationServiceImpl
+import spock.lang.Shared
 import spock.lang.Specification
 
 class BookCollaborationServiceImplSpec extends Specification {
 
-    def 'should create a new book and get it'(){
-        given:
-        BookCollaborationService factory = new BookCollaborationServiceImpl()
+    @Shared
+    BookCollaborationService factory
 
+    def setup(){
+        factory = new BookCollaborationServiceImpl()
+    }
+
+    def 'should create a new book and get it'(){
         when:
         factory.createBook()
 
@@ -18,7 +23,6 @@ class BookCollaborationServiceImplSpec extends Specification {
 
     def "should be able to create a book and write in it"(){
         given:
-        BookCollaborationService factory = new BookCollaborationServiceImpl()
         def line = "If I had a world of my own"
         def bookId = factory.createBook()
 
@@ -31,7 +35,6 @@ class BookCollaborationServiceImplSpec extends Specification {
 
     def "should create a new book add a line see that the book contains it"(){
         given:
-        BookCollaborationService factory = new BookCollaborationServiceImpl()
         def line = "If I had a world of my own"
         def bookId = factory.createBook()
         factory.writeInBook(bookId, line)
@@ -45,8 +48,6 @@ class BookCollaborationServiceImplSpec extends Specification {
 
     def "should create 3 new books and check their existence and that they're open to collaboration"(){
         given:
-        BookCollaborationService factory = new BookCollaborationServiceImpl()
-
         def book = factory.createBook()
         def book2 = factory.createBook()
         def book3 = factory.createBook()
@@ -80,7 +81,6 @@ class BookCollaborationServiceImplSpec extends Specification {
 
     def "should test that after writing multiple lines the book contains them all"(){
         given:
-        BookCollaborationService factory = new BookCollaborationServiceImpl()
         def bookId = factory.createBook()
         def line1 = "If I had a world of my own"
         def line2 = "Line 2"
